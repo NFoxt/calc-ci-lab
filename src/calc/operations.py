@@ -34,3 +34,17 @@ def power(base: float, exponent: int) -> float:
     for _ in range(abs(exponent)):
         result *= base
     return result if exponent >= 0 else 1 / result
+
+
+def gcd(a: int, b: int) -> int:
+    """Возвращает наибольший общий делитель двух целых чисел."""
+    if type(a) is not int or type(b) is not int:
+        raise TypeError("Аргументы должны быть целыми числами")
+
+    a = abs(a)
+    b = abs(b)
+
+    while b != 0:
+        a, b = b, a % b
+
+    return a

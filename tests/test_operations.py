@@ -2,7 +2,7 @@
 
 import pytest
 
-from calc import add, divide, multiply, power, subtract
+from calc import add, divide, gcd, multiply, power, subtract
 from calc.cli import main
 
 
@@ -52,3 +52,17 @@ def test_cli_add(capsys):
 def test_cli_division_by_zero_returns_error_code(capsys):
     assert main(["div", "1", "0"]) == 1
     assert "Ошибка" in capsys.readouterr().err
+
+
+def test_gcd():
+    assert gcd(48, 18) == 6
+
+
+def test_gcd_negative():
+    assert gcd(-24, 18) == 6
+    assert gcd(0, 5) == 5
+
+
+def test_gcd_invalid_input():
+    with pytest.raises(TypeError):
+        gcd(10.5, 5)
